@@ -1,10 +1,70 @@
-function setActive(element) {
-    // حذف کلاس active از تمامی گزینه‌ها
-    var items = document.querySelectorAll('.menu-item');
-    items.forEach(function(item) {
-        item.classList.remove('active');
-    });
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Lalezar', sans-serif;
+    overflow: hidden; /* قطع اسکرول */
+    touch-action: none; /* قطع زوم لمسی */
+}
 
-    // افزودن کلاس active به گزینه کلیک شده
-    element.classList.add('active');
+.menu {
+    width: calc(100% - 6px); /* 3 پیکسل فاصله از چپ و راست */
+    max-width: 800px;
+    background-color: #2f2f2f;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 15px;
+    position: absolute;
+    bottom: 3px; /* 3 پیکسل فاصله از پایین */
+    left: 3px; /* 3 پیکسل فاصله از چپ */
+    right: 3px; /* 3 پیکسل فاصله از راست */
+    box-sizing: border-box;
+}
+
+.menu-item {
+    flex: 1; /* تقسیم منو به 5 قسمت مساوی */
+    text-align: center;
+    color: white;
+    transition: filter 0.3s ease, opacity 0.3s ease; /* اضافه کردن ترنزیشن برای افکت روشنایی */
+}
+
+.menu-item img {
+    width: 45px;
+    height: 45px;
+    display: block;
+    margin: 0 auto 5px;
+    border: none; /* حذف حاشیه */
+    background: none; /* حذف پس‌زمینه */
+    box-shadow: none; /* حذف سایه */
+    transition: filter 0.3s ease; /* اضافه کردن ترنزیشن برای افکت روشنایی */
+}
+
+.menu-item span {
+    display: block;
+    font-size: 10px;
+    transition: opacity 0.3s ease; /* اضافه کردن ترنزیشن برای افکت روشنایی متن */
+}
+
+/* حذف لایه آبی در زمان فوکوس و کلیک */
+.menu-item:focus,
+.menu-item img:focus,
+.menu-item:active,
+.menu-item img:active {
+    outline: none; /* حذف outline پیش‌فرض */
+    border: none;
+    box-shadow: none;
+}
+
+/* افکت کاهش روشنایی هنگام کلیک */
+.menu-item.active img {
+    filter: brightness(50%);
+}
+
+.menu-item.active span {
+    opacity: 0.5;
 }
